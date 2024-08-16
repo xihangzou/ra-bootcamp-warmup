@@ -3095,7 +3095,10 @@ vertical-align: -.125em;
   <li><a href="#semester制が導入された年の列を作成" id="toc-semester制が導入された年の列を作成" class="nav-link" data-scroll-target="#semester制が導入された年の列を作成"><span class="header-section-number">1.5</span> semester制が導入された年の列を作成</a></li>
   <li><a href="#semester制導入後を示すダミー変数を作成" id="toc-semester制導入後を示すダミー変数を作成" class="nav-link" data-scroll-target="#semester制導入後を示すダミー変数を作成"><span class="header-section-number">1.6</span> semester制導入後を示すダミー変数を作成</a></li>
   </ul></li>
-  <li><a href="#gradrate-dataの整形" id="toc-gradrate-dataの整形" class="nav-link" data-scroll-target="#gradrate-dataの整形"><span class="header-section-number">2</span> Gradrate Dataの整形</a></li>
+  <li><a href="#gradrate-dataの整形" id="toc-gradrate-dataの整形" class="nav-link" data-scroll-target="#gradrate-dataの整形"><span class="header-section-number">2</span> Gradrate Dataの整形</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.1</span> </a></li>
+  </ul></li>
   <li><a href="#covariates-dataの整形" id="toc-covariates-dataの整形" class="nav-link" data-scroll-target="#covariates-dataの整形"><span class="header-section-number">3</span> Covariates Dataの整形</a></li>
   </ul>
 </nav>
@@ -3154,8 +3157,8 @@ vertical-align: -.125em;
 <h2 data-number="1.1" class="anchored" data-anchor-id="生データの読み込み"><span class="header-section-number">1.1</span> 生データの読み込み</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#csvの読み込み</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>semester_dummy_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;semester_data_1.csv&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>semester_dummy_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;semester_data_2.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>semester_dummy_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;semester_dummy/semester_data_1.csv&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>semester_dummy_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;semester_dummy/semester_data_2.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -3302,6 +3305,9 @@ vertical-align: -.125em;
 </section>
 <section id="gradrate-dataの整形" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Gradrate Dataの整形</h1>
+<section id="section" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.1</span> </h2>
+</section>
 </section>
 <section id="covariates-dataの整形" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Covariates Dataの整形</h1>

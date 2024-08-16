@@ -63,7 +63,7 @@ if (!require(pacman))  {
 pacman::p_load(tidyverse)
 ```
 
-# Semester Dataの変形
+# Semester Dataの変形<
 
 ## 生データの読み込み
 
@@ -71,8 +71,8 @@ pacman::p_load(tidyverse)
 #| label: read data
 
 #csvの読み込み
-semester_dummy_1 <- read_csv("semester_data_1.csv")
-semester_dummy_2 <- read_csv("semester_data_2.csv")
+semester_dummy_1 <- read_csv("semester_dummy/semester_data_1.csv")
+semester_dummy_2 <- read_csv("semester_dummy/semester_data_2.csv")
 ```
 
 ```{r}
@@ -172,5 +172,7 @@ head(semester_dummy_6)
 ```
 
 # Gradrate Dataの整形
+
+## 
 
 # Covariates Dataの整形
