@@ -3097,9 +3097,27 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#gradrate-dataの整形" id="toc-gradrate-dataの整形" class="nav-link" data-scroll-target="#gradrate-dataの整形"><span class="header-section-number">2</span> Gradrate Dataの整形</a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.1</span> </a></li>
+  <li><a href="#生データの読み込みと結合" id="toc-生データの読み込みと結合" class="nav-link" data-scroll-target="#生データの読み込みと結合"><span class="header-section-number">2.1</span> 生データの読み込みと結合</a></li>
+  <li><a href="#女子学生の4年卒業率をスケール" id="toc-女子学生の4年卒業率をスケール" class="nav-link" data-scroll-target="#女子学生の4年卒業率をスケール"><span class="header-section-number">2.2</span> 女子学生の4年卒業率をスケール</a></li>
+  <li><a href="#男女合計の4年卒業率と男子学生の4年卒業率を計算し追加" id="toc-男女合計の4年卒業率と男子学生の4年卒業率を計算し追加" class="nav-link" data-scroll-target="#男女合計の4年卒業率と男子学生の4年卒業率を計算し追加"><span class="header-section-number">2.3</span> 男女合計の4年卒業率と男子学生の4年卒業率を計算し追加</a></li>
+  <li><a href="#卒業率を有効数字3桁に調整" id="toc-卒業率を有効数字3桁に調整" class="nav-link" data-scroll-target="#卒業率を有効数字3桁に調整"><span class="header-section-number">2.4</span> 卒業率を有効数字3桁に調整</a></li>
+  <li><a href="#年から2010年までのデータフレームに変形" id="toc-年から2010年までのデータフレームに変形" class="nav-link" data-scroll-target="#年から2010年までのデータフレームに変形"><span class="header-section-number">2.5</span> 1991年から2010年までのデータフレームに変形</a></li>
   </ul></li>
-  <li><a href="#covariates-dataの整形" id="toc-covariates-dataの整形" class="nav-link" data-scroll-target="#covariates-dataの整形"><span class="header-section-number">3</span> Covariates Dataの整形</a></li>
+  <li><a href="#covariates-dataの整形" id="toc-covariates-dataの整形" class="nav-link" data-scroll-target="#covariates-dataの整形"><span class="header-section-number">3</span> Covariates Dataの整形</a>
+  <ul class="collapse">
+  <li><a href="#生データの読み込み-1" id="toc-生データの読み込み-1" class="nav-link" data-scroll-target="#生データの読み込み-1"><span class="header-section-number">3.1</span> 生データの読み込み</a></li>
+  <li><a href="#列名の変更" id="toc-列名の変更" class="nav-link" data-scroll-target="#列名の変更"><span class="header-section-number">3.2</span> 列名の変更</a></li>
+  <li><a href="#文字の削除" id="toc-文字の削除" class="nav-link" data-scroll-target="#文字の削除"><span class="header-section-number">3.3</span> 文字の削除</a></li>
+  <li><a href="#新しい列の追加" id="toc-新しい列の追加" class="nav-link" data-scroll-target="#新しい列の追加"><span class="header-section-number">3.4</span> 新しい列の追加</a></li>
+  <li><a href="#outcomeやsemester_dummyに含まれるデータの期間を揃える" id="toc-outcomeやsemester_dummyに含まれるデータの期間を揃える" class="nav-link" data-scroll-target="#outcomeやsemester_dummyに含まれるデータの期間を揃える"><span class="header-section-number">3.5</span> outcomeやsemester_dummyに含まれるデータの期間を揃える</a></li>
+  <li><a href="#outcome_dataに含まれるunitidの編集" id="toc-outcome_dataに含まれるunitidの編集" class="nav-link" data-scroll-target="#outcome_dataに含まれるunitidの編集"><span class="header-section-number">3.6</span> outcome_dataに含まれるunitidの編集</a></li>
+  </ul></li>
+  <li><a href="#master-dataの作成" id="toc-master-dataの作成" class="nav-link" data-scroll-target="#master-dataの作成"><span class="header-section-number">4</span> Master Dataの作成</a>
+  <ul class="collapse">
+  <li><a href="#データの結合" id="toc-データの結合" class="nav-link" data-scroll-target="#データの結合"><span class="header-section-number">4.1</span> データの結合</a></li>
+  <li><a href="#白人比率と女性比率を追加" id="toc-白人比率と女性比率を追加" class="nav-link" data-scroll-target="#白人比率と女性比率を追加"><span class="header-section-number">4.2</span> 白人比率と女性比率を追加</a></li>
+  <li><a href="#データの出力" id="toc-データの出力" class="nav-link" data-scroll-target="#データの出力"><span class="header-section-number">4.3</span> データの出力</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -3148,7 +3166,7 @@ vertical-align: -.125em;
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#tidyvreseをロード</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl, tidyverse, here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="semester-dataの変形" class="level1" data-number="1">
@@ -3157,8 +3175,8 @@ vertical-align: -.125em;
 <h2 data-number="1.1" class="anchored" data-anchor-id="生データの読み込み"><span class="header-section-number">1.1</span> 生データの読み込み</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#csvの読み込み</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>semester_dummy_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;semester_dummy/semester_data_1.csv&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>semester_dummy_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;semester_dummy/semester_data_2.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>semester_dummy_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;raw/semester_dummy/semester_data_1.csv&quot;</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>semester_dummy_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;raw/semester_dummy/semester_data_2.csv&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -3214,9 +3232,13 @@ vertical-align: -.125em;
 <h2 data-number="1.3" class="anchored" data-anchor-id="つのデータを結合する"><span class="header-section-number">1.3</span> 2つのデータを結合する</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>semester_dummy_1_character <span class="ot">&lt;-</span> semester_dummy_1_renamed <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unitid =</span> <span class="fu">as.double</span>(unitid), <span class="at">semester =</span> <span class="fu">as.double</span>(semester), <span class="at">quarter =</span> <span class="fu">as.double</span>(quarter), <span class="at">year =</span> <span class="fu">as.double</span>(year), <span class="at">Y =</span> <span class="fu">as.double</span>(Y))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>semester_dummy_3 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(semester_dummy_1_character, semester_dummy_2_renamed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unitid =</span> <span class="fu">as.double</span>(unitid),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">semester =</span> <span class="fu">as.double</span>(semester),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">quarter =</span> <span class="fu">as.double</span>(quarter),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">year =</span> <span class="fu">as.double</span>(year),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Y =</span> <span class="fu">as.double</span>(Y))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>semester_dummy_3 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(semester_dummy_1_character, semester_dummy_2_renamed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -3258,7 +3280,7 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>semester_dummy_5 <span class="ot">&lt;-</span> semester_dummy_4 <span class="sc">|&gt;</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(unitid) <span class="sc">|&gt;</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">yearofsem =</span> <span class="fu">if_else</span>(<span class="fu">all</span>(semester <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> <span class="fu">all</span>(quarter <span class="sc">==</span> <span class="dv">1</span>), <span class="cn">NA</span>, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">yearofsem =</span> <span class="fu">if_else</span>(<span class="fu">all</span>(semester <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|</span> <span class="fu">all</span>(quarter <span class="sc">==</span> <span class="dv">1</span>), <span class="cn">NA</span>,</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">min</span>(year[semester <span class="sc">==</span> <span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3280,7 +3302,7 @@ vertical-align: -.125em;
 <section id="semester制導入後を示すダミー変数を作成" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="semester制導入後を示すダミー変数を作成"><span class="header-section-number">1.6</span> semester制導入後を示すダミー変数を作成</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>semester_dummy_6 <span class="ot">&lt;-</span> semester_dummy_5 <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>clean_semester_dummy <span class="ot">&lt;-</span> semester_dummy_5 <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(unitid) <span class="sc">|&gt;</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">after =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(yearofsem), <span class="cn">NA</span>, </span>
@@ -3305,12 +3327,308 @@ vertical-align: -.125em;
 </section>
 <section id="gradrate-dataの整形" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Gradrate Dataの整形</h1>
-<section id="section" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.1</span> </h2>
+<section id="生データの読み込みと結合" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="生データの読み込みと結合"><span class="header-section-number">2.1</span> 生データの読み込みと結合</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ファイル名を生成</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">1991</span><span class="sc">:</span><span class="dv">2016</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>file_paths <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="fu">paste0</span>(<span class="st">&quot;raw/outcome/&quot;</span>, years, <span class="st">&quot;.xlsx&quot;</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 全てのファイルをリストに読み込む</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>outcome_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(file_paths[<span class="fu">file.exists</span>(file_paths)], read_excel)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># データフレームを結合</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>outcome_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(outcome_list) <span class="sc">|&gt;</span> </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">totcohortsize =</span> <span class="fu">as.double</span>(totcohortsize),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">m_4yrgrads =</span> <span class="fu">as.double</span>(m_4yrgrads))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  unitid  year totcohortsize w_cohortsize m_cohortsize tot4yrgrads m_4yrgrads
+   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 100654  1991          1010          527          483         152         32
+2 100663  1991           937          500          437          82         33
+3 100751  1991          2511         1348         1163         630        213
+4 100858  1991          3024         1496         1528         846        312
+5 101435  1991           189          101           88          60         25
+6 101480  1991          1100          567          533         109         42
+# ℹ 2 more variables: w_4yrgrads &lt;dbl&gt;, women_gradrate_4yr &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="女子学生の4年卒業率をスケール" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="女子学生の4年卒業率をスケール"><span class="header-section-number">2.2</span> 女子学生の4年卒業率をスケール</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>outcome_combined_2 <span class="ot">&lt;-</span> outcome_combined <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">womengradrate4yr =</span> women_gradrate_4yr <span class="sc">*</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  m_cohortsize tot4yrgrads w_4yrgrads women_gradrate_4yr womengradrate4yr
+         &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;
+1          483         152        120               22.8            0.228
+2          437          82         49                9.8            0.098
+3         1163         630        417               30.9            0.309
+4         1528         846        534               35.7            0.357
+5           88          60         35               34.6            0.346
+6          533         109         67               11.8            0.118</code></pre>
+</div>
+</div>
+</section>
+<section id="男女合計の4年卒業率と男子学生の4年卒業率を計算し追加" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="男女合計の4年卒業率と男子学生の4年卒業率を計算し追加"><span class="header-section-number">2.3</span> 男女合計の4年卒業率と男子学生の4年卒業率を計算し追加</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>outcome_combined_3 <span class="ot">&lt;-</span> outcome_combined_2 <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gradrate4yr =</span> tot4yrgrads <span class="sc">/</span> <span class="fu">as.numeric</span>(totcohortsize), </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">mengradrate4yr =</span> <span class="fu">as.numeric</span>(m_4yrgrads) <span class="sc">/</span> m_cohortsize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  women_gradrate_4yr womengradrate4yr gradrate4yr mengradrate4yr
+               &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
+1               22.8            0.228      0.150          0.0663
+2                9.8            0.098      0.0875         0.0755
+3               30.9            0.309      0.251          0.183 
+4               35.7            0.357      0.280          0.204 
+5               34.6            0.346      0.317          0.284 
+6               11.8            0.118      0.0991         0.0788</code></pre>
+</div>
+</div>
+</section>
+<section id="卒業率を有効数字3桁に調整" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="卒業率を有効数字3桁に調整"><span class="header-section-number">2.4</span> 卒業率を有効数字3桁に調整</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>outcome_combined_4 <span class="ot">&lt;-</span> outcome_combined_3 <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">womengradrate4yr =</span> <span class="fu">round</span>(womengradrate4yr, <span class="at">digits =</span> <span class="dv">3</span>), </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">gradrate4yr =</span> <span class="fu">round</span>(gradrate4yr, <span class="at">digits =</span> <span class="dv">3</span>), </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">mengradrate4yr =</span> <span class="fu">round</span>(mengradrate4yr, <span class="at">digits =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  women_gradrate_4yr womengradrate4yr gradrate4yr mengradrate4yr
+               &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
+1               22.8            0.228       0.15           0.066
+2                9.8            0.098       0.088          0.076
+3               30.9            0.309       0.251          0.183
+4               35.7            0.357       0.28           0.204
+5               34.6            0.346       0.317          0.284
+6               11.8            0.118       0.099          0.079</code></pre>
+</div>
+</div>
+</section>
+<section id="年から2010年までのデータフレームに変形" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="年から2010年までのデータフレームに変形"><span class="header-section-number">2.5</span> 1991年から2010年までのデータフレームに変形</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>clean_outcome <span class="ot">&lt;-</span> outcome_combined_4 <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&lt;</span> <span class="dv">2011</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+  unitid  year totcohortsize w_cohortsize m_cohortsize tot4yrgrads m_4yrgrads
+   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 100654  1991          1010          527          483         152         32
+2 100663  1991           937          500          437          82         33
+3 100751  1991          2511         1348         1163         630        213
+4 100858  1991          3024         1496         1528         846        312
+5 101435  1991           189          101           88          60         25
+6 101480  1991          1100          567          533         109         42
+# ℹ 5 more variables: w_4yrgrads &lt;dbl&gt;, women_gradrate_4yr &lt;dbl&gt;,
+#   womengradrate4yr &lt;dbl&gt;, gradrate4yr &lt;dbl&gt;, mengradrate4yr &lt;dbl&gt;</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="covariates-dataの整形" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Covariates Dataの整形</h1>
+<section id="生データの読み込み-1" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="生データの読み込み-1"><span class="header-section-number">3.1</span> 生データの読み込み</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>covariates <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;raw/covariates/covariates.xlsx&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  university_id year  category         value
+  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;
+1 100654aaaa    1987  instatetuition   &lt;NA&gt; 
+2 100654aaaa    1987  costs            &lt;NA&gt; 
+3 100654aaaa    1987  faculty          &lt;NA&gt; 
+4 100654aaaa    1987  white_cohortsize &lt;NA&gt; 
+5 100654aaaa    1988  instatetuition   &lt;NA&gt; 
+6 100654aaaa    1988  costs            &lt;NA&gt; </code></pre>
+</div>
+</div>
+</section>
+<section id="列名の変更" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="列名の変更"><span class="header-section-number">3.2</span> 列名の変更</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>covariates_2 <span class="ot">&lt;-</span> covariates <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;unitid&quot;</span> <span class="ot">=</span> university_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  unitid     year  category         value
+  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;
+1 100654aaaa 1987  instatetuition   &lt;NA&gt; 
+2 100654aaaa 1987  costs            &lt;NA&gt; 
+3 100654aaaa 1987  faculty          &lt;NA&gt; 
+4 100654aaaa 1987  white_cohortsize &lt;NA&gt; 
+5 100654aaaa 1988  instatetuition   &lt;NA&gt; 
+6 100654aaaa 1988  costs            &lt;NA&gt; </code></pre>
+</div>
+</div>
+</section>
+<section id="文字の削除" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="文字の削除"><span class="header-section-number">3.3</span> 文字の削除</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>covariates_3 <span class="ot">&lt;-</span> covariates_2</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>covariates_3<span class="sc">$</span>unitid <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;aaaa&quot;</span>, <span class="st">&quot;&quot;</span>, covariates_3<span class="sc">$</span>unitid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  unitid year  category         value
+  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;
+1 100654 1987  instatetuition   &lt;NA&gt; 
+2 100654 1987  costs            &lt;NA&gt; 
+3 100654 1987  faculty          &lt;NA&gt; 
+4 100654 1987  white_cohortsize &lt;NA&gt; 
+5 100654 1988  instatetuition   &lt;NA&gt; 
+6 100654 1988  costs            &lt;NA&gt; </code></pre>
+</div>
+</div>
+</section>
+<section id="新しい列の追加" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="新しい列の追加"><span class="header-section-number">3.4</span> 新しい列の追加</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>covariates_4 <span class="ot">&lt;-</span> covariates_3 <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> category, <span class="at">values_from =</span> value) <span class="sc">|&gt;</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">unitid =</span> <span class="fu">as.double</span>(unitid),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">year =</span> <span class="fu">as.double</span>(year),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">instatetuition =</span> <span class="fu">as.double</span>(instatetuition),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">costs =</span> <span class="fu">as.double</span>(costs),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">faculty =</span> <span class="fu">as.double</span>(faculty),</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">white_cohortsize =</span> <span class="fu">as.double</span>(white_cohortsize))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  unitid  year instatetuition costs faculty white_cohortsize
+   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+1 100654  1987             NA  NA        NA               NA
+2 100654  1988             NA  NA        NA               NA
+3 100654  1989             NA  NA        NA               NA
+4 100654  1990           1248  NA       240               NA
+5 100654  1991           1298  53.1     223               11
+6 100654  1992           1600  52.5     267                5</code></pre>
+</div>
+</div>
+</section>
+<section id="outcomeやsemester_dummyに含まれるデータの期間を揃える" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="outcomeやsemester_dummyに含まれるデータの期間を揃える"><span class="header-section-number">3.5</span> outcomeやsemester_dummyに含まれるデータの期間を揃える</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>covariates_5 <span class="ot">&lt;-</span> covariates_4 <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> clean_semester_dummy<span class="sc">$</span>year <span class="sc">&amp;</span> year <span class="sc">%in%</span> clean_outcome<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  unitid  year instatetuition costs faculty white_cohortsize
+   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+1 100654  1991           1298  53.1     223               11
+2 100654  1992           1600  52.5     267                5
+3 100654  1993           1600  50.4     262                7
+4 100654  1995           2022  68.0     298               18
+5 100654  1996           2312  66.4     311               17
+6 100654  1997           2420  72.5     306               22</code></pre>
+</div>
+</div>
+</section>
+<section id="outcome_dataに含まれるunitidの編集" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="outcome_dataに含まれるunitidの編集"><span class="header-section-number">3.6</span> outcome_dataに含まれるunitidの編集</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>clean_covariates <span class="ot">&lt;-</span> covariates_5 <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(unitid <span class="sc">%in%</span> clean_outcome<span class="sc">$</span>unitid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  unitid  year instatetuition costs faculty white_cohortsize
+   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+1 100654  1991           1298  53.1     223               11
+2 100654  1992           1600  52.5     267                5
+3 100654  1993           1600  50.4     262                7
+4 100654  1995           2022  68.0     298               18
+5 100654  1996           2312  66.4     311               17
+6 100654  1997           2420  72.5     306               22</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="master-dataの作成" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Master Dataの作成</h1>
+<section id="データの結合" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="データの結合"><span class="header-section-number">4.1</span> データの結合</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>all_combined <span class="ot">&lt;-</span> <span class="fu">left_join</span>(clean_semester_dummy, clean_outcome, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;unitid&quot;</span>, <span class="st">&quot;year&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(clean_covariates, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;unitid&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 21
+  unitid instnm             semester quarter  year yearofsem after totcohortsize
+   &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+1 100654 ALABAMA A&amp;M UNIVE…        1       0  1991        NA    NA          1010
+2 100654 ALABAMA A&amp;M UNIVE…        1       0  1992        NA    NA           876
+3 100654 ALABAMA A &amp; M UNI…        1       0  1993        NA    NA          1019
+4 100654 ALABAMA A &amp; M UNI…        1       0  1995        NA    NA           849
+5 100654 ALABAMA A &amp; M UNI…        1       0  1996        NA    NA           716
+6 100654 ALABAMA A &amp; M UNI…        1       0  1997        NA    NA           789
+# ℹ 13 more variables: w_cohortsize &lt;dbl&gt;, m_cohortsize &lt;dbl&gt;,
+#   tot4yrgrads &lt;dbl&gt;, m_4yrgrads &lt;dbl&gt;, w_4yrgrads &lt;dbl&gt;,
+#   women_gradrate_4yr &lt;dbl&gt;, womengradrate4yr &lt;dbl&gt;, gradrate4yr &lt;dbl&gt;,
+#   mengradrate4yr &lt;dbl&gt;, instatetuition &lt;dbl&gt;, costs &lt;dbl&gt;, faculty &lt;dbl&gt;,
+#   white_cohortsize &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="白人比率と女性比率を追加" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="白人比率と女性比率を追加"><span class="header-section-number">4.2</span> 白人比率と女性比率を追加</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>master <span class="ot">&lt;-</span> all_combined <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">per_white_cohort =</span> white_cohortsize <span class="sc">/</span> totcohortsize,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">per_women_cohort =</span> w_cohortsize <span class="sc">/</span> totcohortsize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  costs faculty white_cohortsize per_white_cohort per_women_cohort
+  &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+1  53.1     223               11          0.0109             0.522
+2  52.5     267                5          0.00571            0.507
+3  50.4     262                7          0.00687            0.533
+4  68.0     298               18          0.0212             0.511
+5  66.4     311               17          0.0237             0.520
+6  72.5     306               22          0.0279             0.522</code></pre>
+</div>
+</div>
+</section>
+<section id="データの出力" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="データの出力"><span class="header-section-number">4.3</span> データの出力</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_semester_dummy, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;intermediate/clean_semester_dummy.csv&quot;</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_outcome, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;intermediate/clean_outcome.csv&quot;</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean_covariates, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;intermediate/clean_covariates.csv&quot;</span>))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(master, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;intermediate/master.csv&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 
 </main>
