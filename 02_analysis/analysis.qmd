@@ -1,0 +1,293 @@
+---
+title: "RA Bootcamp Warmup"
+subtitle: "Analysis"
+author: "Xihang ZOU"
+date: "2024.8.17"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"
+    toc-location: left
+    number-sections: true
+    number-depth: 3
+    code-tools:
+      toggle: true
+      source: false
+    code-link: true
+    crossrefs-hover: false
+    citations-hover: false
+    footnotes-hover: false
+    citation-location: margin
+    reference-location: margin
+    df-print: tibble
+    theme: default
+    embed-resources: true
+crossref:
+  fig-title: "Figure"
+  tbl-title: "Table"
+  fig-prefix: "Figure"
+  tbl-prefix: "Table"
+  chapters: true
+execute:
+  error: false
+  warning: false
+  fig.align: "center"
+# knitr:
+#   opts_chunk:
+#     dev: "ragg_png"
+editor: source
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+rm(list = ls())
+```
+
+
+### パッケージの読み込み {.unnumbered}
+
+```{r}
+#| label: load packages
+
+#pacmanをインストール
+if (!require(pacman))  {
+  install.packages("pacman")
+}
+
+#tidyvreseをロード
+pacman::p_load(readxl, tidyverse, here, kableExtra, gt)
+```
+
+# 記述統計
+
+### Masterの読み込み {.unnumbered}
+
+```{r}
+#| label: read master
+
+#csvの読み込み
+master <- read_csv(here("master.csv"))
+```
+
+```{r}
+#| echo: false
+
+#データを表示
+head(master)
+```
+## 各列に含まれるNAの数を数える
+
+```{r}
+#| label: count NAs
+
+#列ごとのNAをカウント
+numbers_NA <- as.data.frame(sapply(master, function(x) sum(is.na(x)))) |> 
+  rename("number_NA" = "sapply(master, function(x) sum(is.na(x)))")
+
+#行と列を入れ替え
+numbers_NA <- as.data.frame(t(numbers_NA))
+```
+
+```{r}
+#| echo: false
+head(numbers_NA)
+```
+
+## 要約統計の作成
+
+```{r}
+#| label: summarize master
+
+#要約統計を作成
+summary_master <- master |> 
+  group_by(switcher = if_else(!is.na(after), "Switchers", "Never switchers")) |>  
+  summarise(
+    `Semester calendar` = paste0(round(mean(semester, na.rm = TRUE), 2), " (", round(sd(semester, na.rm = TRUE), 2), ")"),
+    `Four-year graduation rate` = paste0(round(mean(gradrate4yr, na.rm = TRUE), 2), " (", round(sd(gradrate4yr, na.rm = TRUE), 2), ")"),
+    `Four-year women graduation rate` = paste0(round(mean(womengradrate4yr, na.rm = TRUE), 2), " (", round(sd(womengradrate4yr, na.rm = TRUE), 2), ")"),
+    `Four-year men graduation rate` = paste0(round(mean(mengradrate4yr, na.rm = TRUE), 2), " (", round(sd(mengradrate4yr, na.rm = TRUE), 2), ")"),
+    `Cohort size` = paste0(round(mean(totcohortsize, na.rm = TRUE), 2), " (", round(sd(totcohortsize, na.rm = TRUE), 2), ")"),
+    `Full-time-equivalent faculty` = paste0(round(mean(faculty, na.rm = TRUE), 2), " (", round(sd(faculty, na.rm = TRUE), 2), ")"),
+    `In-state tuition` = paste0(round(mean(instatetuition, na.rm = TRUE), 2), " (", round(sd(instatetuition, na.rm = TRUE), 2), ")")
+  ) |> 
+  bind_rows(master |> 
+              summarise(
+                 `Semester calendar` = paste0(round(mean(semester, na.rm = TRUE), 2), " (", round(sd(semester, na.rm = TRUE), 2), ")"),
+    `Four-year graduation rate` = paste0(round(mean(gradrate4yr, na.rm = TRUE), 2), " (", round(sd(gradrate4yr, na.rm = TRUE), 2), ")"),
+    `Four-year women graduation rate` = paste0(round(mean(womengradrate4yr, na.rm = TRUE), 2), " (", round(sd(womengradrate4yr, na.rm = TRUE), 2), ")"),
+    `Four-year men graduation rate` = paste0(round(mean(mengradrate4yr, na.rm = TRUE), 2), " (", round(sd(mengradrate4yr, na.rm = TRUE), 2), ")"),
+    `Cohort size` = paste0(round(mean(totcohortsize, na.rm = TRUE), 2), " (", round(sd(totcohortsize, na.rm = TRUE), 2), ")"),
+    `Full-time-equivalent faculty` = paste0(round(mean(faculty, na.rm = TRUE), 2), " (", round(sd(faculty, na.rm = TRUE), 2), ")"),
+    `In-state tuition` = paste0(round(mean(instatetuition, na.rm = TRUE), 2), " (", round(sd(instatetuition, na.rm = TRUE), 2), ")")
+              ) |>  mutate(switcher = "All")
+  ) |> 
+  arrange(match(switcher, c("All", "Never switchers", "Switchers")))
+
+#行と列を入れ替え
+summary_master <- as.data.frame(t(summary_master))
+
+#列名を変更
+colnames(summary_master) <- summary_master[1, ]
+summary_master <- summary_master[-1, ]
+
+#表を作成
+summary_master |> 
+  kbl(caption = "Table 1—Institution-Level Summary Statistics", format = "html") |> 
+  kable_styling(bootstrap_options = "condensed",
+                full_width = FALSE, 
+                font_size = 14, 
+                position = "center",
+                html_font = "Times New Roman") |> 
+  column_spec(1, width = "200px") |> 
+  column_spec(2:4, width = "110px", extra_css = "text-align: center;") |>
+  row_spec(0, bold = TRUE, extra_css = "text-align: center; vertical-align: middle;", 
+           hline_after = TRUE) |> 
+  row_spec(1:nrow(summary_master), extra_css = "height: 40px; vertical-align: middle;") |> 
+  footnote(general = "The balanced panel dataset includes the 1991–2010 entering cohorts. There are 731 institutions and 19 years. An observation is an institution year. Standard deviations are reported in parentheses.",
+           general_title = "Notes:", 
+           footnote_as_chunk = TRUE)
+```
+
+## 4年卒業率の平均推移をプロット
+
+```{r}
+#| label: plot avg_gradrate4yr
+
+#4年卒業率を計算
+summary_semesterrate <- master |> 
+  group_by(year) |> 
+  summarize(fraction_on_semesters = mean(semester, na.rm = TRUE))
+
+
+# グラフをプロット
+summary_semesterrate |> 
+ggplot(aes(x = year)) +
+  geom_line(aes(y = fraction_on_semesters), color = "black", size = 0.5) +
+  scale_y_continuous(
+    name = "4-year graduation rate",
+    limits = c(0.8, 1)
+  ) +
+  labs(
+    title = "Figure 1. Four-Year Graduation Rates",
+    x = "Year"
+  ) +
+  theme_minimal()+
+  theme(
+    plot.title = element_text(hjust = 0.5, family = "serif"),
+    panel.grid = element_blank(),
+    axis.line = element_line(),
+    axis.ticks = element_line(),
+    axis.title.y.left = element_text(margin = margin(r = 10)),  
+    axis.title.y.right = element_text(margin = margin(l = 10))
+  )
+```
+
+## semester制導入率の平均推移をプロット
+
+```{r}
+#| label: plot fraction_on_semesters
+
+#4年卒業率を計算
+summary_gradrate4yr <- master |> 
+  group_by(year) |> 
+  summarize(avg_gradrate4yr = mean(gradrate4yr, na.rm = TRUE))
+
+
+# グラフをプロット
+summary_gradrate4yr |> 
+ggplot(aes(x = year)) +
+  geom_line(aes(y = avg_gradrate4yr), color = "black", size = 0.5) +
+  scale_y_continuous(
+    name = "Fraction of schools on semesters",
+    limits = c(0.25, 0.45)
+  ) +
+  labs(
+    title = "Figure 2. Fraction of Schools on Semesters",
+    x = "Year"
+  ) +
+  theme_minimal()+
+  theme(
+    plot.title = element_text(hjust = 0.5, family = "serif"),
+    panel.grid = element_blank(),
+    axis.line = element_line(),
+    axis.ticks = element_line(),
+    axis.title.y.left = element_text(margin = margin(r = 10)),  
+    axis.title.y.right = element_text(margin = margin(l = 10))
+  )
+```
+
+## 4年卒業率とsemester制導入率の平均推移を同時にプロット
+
+```{r}
+#| label: plot rates
+
+#要約統計量を計算
+summary_rates <- master |> 
+  group_by(year) |> 
+  summarize(fraction_on_semesters = mean(semester, na.rm = TRUE),
+            avg_gradrate4yr = mean(gradrate4yr, na.rm = TRUE))
+
+
+# グラフをプロット
+summary_rates |> 
+ggplot(aes(x = year)) +
+  geom_line(aes(y = fraction_on_semesters, linetype = "Fraction of schools on semesters"), color = "black", size = 0.5) +
+  geom_line(aes(y = avg_gradrate4yr + 0.55, linetype = "4-year graduation rate"), color = "black", size = 0.5) +
+  scale_y_continuous(
+    name = "Fraction of schools on semesters",
+    limits = c(0.8, 1),  # Adjust limits as necessary
+    sec.axis = sec_axis(~. -0.55, name = "4-year graduation rate" )
+  ) +
+  scale_linetype_manual(
+    values = c("Fraction of schools on semesters" = "solid", 
+               "4-year graduation rate" = "dashed")
+  ) +
+  labs(
+    title = "Figure 3. Fraction of Schools on Semesters and Four-Year Graduation Rates",
+    x = "Year",
+    linetype = "Legend"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, family = "serif"),
+    legend.position = "bottom",
+    panel.grid = element_blank(),
+    axis.line = element_line(),
+    axis.ticks = element_line(),
+    axis.title.y.left = element_text(margin = margin(r = 10)),  
+    axis.title.y.right = element_text(margin = margin(l = 10))
+  )
+```
+## 散布図を作成
+
+```{r}
+#| label: create scatter plots
+
+# 散布図を作成する関数
+create_scatter_plot <- function(data, x_col, y_col) {
+  x_col <- enquo(x_col)
+  y_col <- enquo(y_col)
+  
+  ggplot(data, aes(x = !!x_col, y = !!y_col)) +
+    geom_point(color = "blue", alpha = 0.2) +
+    labs(x = quo_name(x_col), y = quo_name(y_col)) +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, family = "serif"))
+}
+
+plot1 <- create_scatter_plot(master, gradrate4yr, per_women_cohort) + labs(title = "Figure 4a. Four-Year Graduation Rates vs Female Students Ratio")
+plot2 <- create_scatter_plot(master, gradrate4yr, per_white_cohort) + labs(title = "Figure 4b. Four-Year Graduation Rates vs White Students Ratio")
+plot3 <- create_scatter_plot(master, gradrate4yr, instatetuition) + labs(title = "Figure 4c. Four-Year Graduation Rates vs In-state Tuition")
+```
+
+```{r}
+#| echo: false
+print(plot1)
+print(plot2)
+print(plot3)
+```
