@@ -60,7 +60,7 @@ if (!require(pacman))  {
 }
 
 #パッケージをロード
-pacman::p_load(readxl, tidyverse, here, kableExtra, gt, modelsummary, stargazer)
+pacman::p_load(readxl, tidyverse, here, kableExtra, gt, stargazer)
 ```
 
 # 記述統計
