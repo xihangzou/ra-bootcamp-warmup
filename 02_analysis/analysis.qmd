@@ -60,7 +60,7 @@ if (!require(pacman))  {
 }
 
 #tidyvreseをロード
-pacman::p_load(readxl, tidyverse, here, kableExtra, gt)
+pacman::p_load(readxl, tidyverse, here, kableExtra, gt, modelsummary)
 ```
 
 # 記述統計
@@ -290,4 +290,16 @@ plot3 <- create_scatter_plot(master, gradrate4yr, instatetuition) + labs(title =
 print(plot1)
 print(plot2)
 print(plot3)
+```
+# 回帰分析
+
+## 次の回帰式を推定
+
+![](regression.png){width=50%, fig-align="center"}
+
+```{r}
+#| label: regression
+
+lm(formula = gradrate4yr ~ after, data = master) |> 
+  modelsummary()
 ```
