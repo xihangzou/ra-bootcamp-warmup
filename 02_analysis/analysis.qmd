@@ -59,7 +59,7 @@ if (!require(pacman))  {
   install.packages("pacman")
 }
 
-#tidyvreseをロード
+#パッケージをロード
 pacman::p_load(readxl, tidyverse, here, kableExtra, gt, modelsummary)
 ```
 
