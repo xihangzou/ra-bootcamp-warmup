@@ -293,9 +293,7 @@ print(plot3)
 ```
 # 回帰分析
 
-## 次の回帰式を推定
-
-![](regression.png){width=50%, fig-align="center"}
+## 回帰式を推定
 
 ```{r}
 #| label: regression
