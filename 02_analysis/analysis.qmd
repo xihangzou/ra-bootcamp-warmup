@@ -280,9 +280,9 @@ create_scatter_plot <- function(data, x_col, y_col) {
     theme(plot.title = element_text(hjust = 0.5, family = "serif"))
 }
 
-plot1 <- create_scatter_plot(master, gradrate4yr, per_women_cohort) + labs(title = "Figure 4a. Four-Year Graduation Rates vs Female Students Ratio")
-plot2 <- create_scatter_plot(master, gradrate4yr, per_white_cohort) + labs(title = "Figure 4b. Four-Year Graduation Rates vs White Students Ratio")
-plot3 <- create_scatter_plot(master, gradrate4yr, instatetuition) + labs(title = "Figure 4c. Four-Year Graduation Rates vs In-state Tuition")
+plot1 <- create_scatter_plot(master, per_women_cohort, gradrate4yr) + labs(title = "Figure 4a. Four-Year Graduation Rates vs Female Students Ratio")
+plot2 <- create_scatter_plot(master, per_white_cohort, gradrate4yr) + labs(title = "Figure 4b. Four-Year Graduation Rates vs White Students Ratio")
+plot3 <- create_scatter_plot(master, instatetuition, gradrate4yr) + labs(title = "Figure 4c. Four-Year Graduation Rates vs In-state Tuition")
 ```
 
 ```{r}
